@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+
 import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import User from '../models/User';
@@ -153,10 +154,10 @@ class AppointmentController {
 
     await appointment.save();
 
-    await Mail.sendMail({
+    await Mail.sendEmail({
       to: `${appointment.provider.name} <${appointment.provider.email}>`,
       subject: 'Agendamento cancelado',
-      template: 'cancellation',
+      template: 'cancellations',
       context: {
         provider: appointment.provider.name,
         user: appointment.user.name,
