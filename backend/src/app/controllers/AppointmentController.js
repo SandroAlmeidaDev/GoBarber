@@ -3,7 +3,7 @@ import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import User from '../models/User';
 import File from '../models/File';
-import Appointment from '../models/Appointments';
+import Appointment from '../models/Appointment';
 import Notification from '../schemas/Notification';
 
 import CancellationMail from '../jobs/CancellationMail';
@@ -16,7 +16,7 @@ class AppointmentController {
     const appointments = await Appointment.findAll({
       where: { user_id: req.userId, canceled_at: null },
       order: ['date'],
-      attributes: ['id', 'date'],
+      attributes: ['id', 'date', 'past', 'cancelable'],
       limit: 20,
       offset: (page - 1) * 20,
       include: [

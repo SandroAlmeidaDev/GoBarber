@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 import User from '../app/models/User';
 import File from '../app/models/File';
-import Appointments from '../app/models/Appointments';
+import Appointments from '../app/models/Appointment';
 
 import databaseConfig from '../config/database';
 
@@ -24,9 +24,7 @@ class Database {
   }
 
   mongo() {
-    this.mongoConnection = mongoose.connect(
-      'mongodb://192.168.0.108:27017/gobarber',
-      {
+    this.mongoConnection = mongoose.connect('mongodb://192.168.0.108:27017/gobarber', {
         useNewUrlParser: true,
         useFindAndModify: true,
         useUnifiedTopology: true,
